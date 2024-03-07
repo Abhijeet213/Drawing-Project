@@ -1,2 +1,0 @@
-DATABASE_HOST="http://localhost"
-DATABASE_PORT="5432" 
