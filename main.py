@@ -1,5 +1,6 @@
 from flask import Flask,render_template,redirect,request,g
 from utils.get_db import get_db
+from model.drawing import Drawing
 app = Flask(__name__)
 
 @app.before_request
@@ -9,6 +10,14 @@ def set_db():
 @app.route('/')
 def home():
  return render_template('home.html')
+
+@app.route('/',methods=['POST'])
+def search():
+ if request.method == 'POST':
+  name=request.form['name']
+  query=g.db.query(Drawing).filter(name.lower() in Drawing.name.lower() or Drawing.name.lower() in name.lower())
+  return render_template('store.html',query=query)  ## To Modified Later
+ 
 
 
 if __name__ == '__main__':
