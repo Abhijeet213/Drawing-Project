@@ -9,7 +9,9 @@ def set_db():
 
 @app.route('/')
 def home():
- return render_template('home.html')
+ query=g.db.query(Drawing).all()
+ if query == [] or query is None:
+  return render_template('home.html',pant="<h2 style=text-align:center;font-family:Truculenta;margin-top:62px>No Drawing Available</h2>")
 
 @app.route('/',methods=['POST'])
 def search():
