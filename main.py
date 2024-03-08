@@ -20,6 +20,10 @@ def search():
   query=g.db.query(Drawing).filter(name.lower() in Drawing.name.lower() or Drawing.name.lower() in name.lower())
   return render_template('store.html',query=query)  ## To Modified Later
  
+@app.route('/sign',methods=['GET'])
+def signup():
+ return render_template('sign.html')
+
 
 
 if __name__ == '__main__':
